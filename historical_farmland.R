@@ -5,8 +5,8 @@
 
 # ---- start --------------------------------------------------------------
 
-library(stringr)
-library(tidyverse)
+library("stringr")
+library("tidyverse")
 
 wide_vars <- read_csv("vars-wide.csv") %>% 
   filter(year > 1840)
