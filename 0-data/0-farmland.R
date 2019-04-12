@@ -19,7 +19,7 @@ if (!file.exists(data_source)) dir.create(data_source, recursive = T)
 wide_vars <- read_csv("0-data/varlists/vars-wide.csv") %>% 
   filter(year > 1840)
 
-wide_vars_list <- list(x = paste0(data_source, wide_vars$file),
+wide_vars_list <- list(x = paste0(data_source, "/", wide_vars$file),
                        y = wide_vars$year)
 
 
