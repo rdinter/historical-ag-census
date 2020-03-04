@@ -65,7 +65,8 @@ census <- census %>%
 
 census <- census %>% 
   mutate_at(vars(contains("val")), function(x) x*1000) %>% 
-  mutate(farmland_val_per_farm = farmland_val_per_farm/1000,
+  mutate(farmland_val = farmland_val/1000,
+         farmland_val_per_farm = farmland_val_per_farm/1000,
          farmland_val_per_acre = farmland_val_per_acre/1000,
          stfips = floor(fips / 1000),
          ctyfips = fips - 1000*stfips)
@@ -78,8 +79,8 @@ census <- census %>%
                                          farmland_val / acres / 1000,
                                          farmland_val_per_acre),
          farmland_val = if_else(is.na(farmland_val),
-                                1000*(farmland_val_per_acre*acres +
-                                        farmland_val_per_farm*farms)/2,
+                                (farmland_val_per_acre*acres +
+                                   farmland_val_per_farm*farms)/2,
                                 farmland_val),
          acres = if_else(is.na(acres),
                          acres_full_owned + acres_part + acres_tenant_rented +
